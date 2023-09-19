@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<Title>Malta Market</Title>
+<style>
+	.market-body{
+		margin: 0 15px 0 15px;
+	}
+	#navbar{
+		z-index: 0;
+	}
+</style>
+
+{% endblock %}
+
+{% block body %}
+<section class="market-body" style="margin-top:70px">
+	<div class="row">
+		<div class="col-8">
+			<h2>Currently Available Cars</h2>
+			<p>Click to add to your collection</p>
+			<br>
+			<table class="table table-dark table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Model</th>
+						<th scope="col">Barcode</th>
+						<th scope="col">Price</th>
+						<th scope="col">Options</th>
+					</tr>
+				</thead>
+
+				<body>
+					{% for item in items %}
+					{% include 'includes/all_modals.html' %}
+						<tr>
+							<td>{{ item.model }}</td>
+							<td>{{ item.barcode }}</td>
+							<td>${{ item.price }}</td>
+							<td>
+								<button class="btn btn-outline btn-info" onclick="document.getElementById('Modal-MoreInfo-{{ item.barcode }}').style.display='block'">More Info</button>
+								<button class="btn btn-outline btn-success" onclick="document.getElementById('Modal-Purchase-{{ item.barcode }}').style.display='block'">Purchase Now</button>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-4">
+			<h2>Your Cars</h2>
+			<p>Here are your Currently owned cars</p>
+			<br>
+
+			<div class="row">
+				{% for owned_item in owned_items %}
+				{% include 'includes/owned_item_modals.html' %}
+				<div class="col-md-6">
+					<div style="margin-bottom: 5px;" class="card text-center bg-dark">
+						<div class="card-body">
+							<h5 class="card-title">{{ owned_item.model }}</h5>
+							<button type="button" class="btn btn-outline-primary" onclick="document.getElementById('Modal-More-Info-{{ owned_item.barcode }}').style.display='block'">
+								More Info
+							</button>
+							<p class="card-text"><strong>${{ owned_item.price }}</strong></p>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	var market = document.getElementById("market");
+	market.classList.add('active');
+</script>
+{% endblock %}

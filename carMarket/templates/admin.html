@@ -1,0 +1,142 @@
+{% extends 'base.html' %}
+{% block head %}
+<Title>Malta Admin</Title>
+
+<style>
+	.admin-body{
+		margin: 0 15px 0 15px;
+	}
+	.top-facts {
+	    color: white;
+	    float: left;
+	    border: none;
+	    outline: none;
+	    cursor: pointer;
+	    padding: 14px 16px;
+	    font-size: 17px;
+	    width: 25%;
+	}
+	.login-modal {
+	    display: block; /* Hidden by default */
+	    position: fixed; /* Stay in place */
+	    z-index: 1; /* Sit on top */
+	    top: 0;
+	    width: 100%; /* Full width */
+	    height: 100%; /* Full height */
+	    overflow: auto; /* Enable scroll if needed */
+	    background-color: rgb(0,0,0); /* Fallback color */
+	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	    padding-top: 60px;
+	}
+	
+</style>
+{% endblock %}
+
+{% block body %}
+{% include 'includes/add_car_modal.html' %}
+<section class="admin-body" style="margin-top:70px">
+	<div class="row">
+		<div class="top-facts">
+			<div style="margin-bottom: 20px; padding: 20px 0 20px 0;" class="card text-center bg-dark">
+				<div class="card-body">
+					<h2 class="card-title">{{ user_len }}</h2>
+					<p class="card-text"><strong>Active Users</strong></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="top-facts">
+			<div style="margin-bottom: 20px; padding: 20px 0 20px 0;" class="card text-center bg-dark">
+				<div class="card-body">
+					<h2 class="card-title">{{ item_len }}</h2>
+					<p class="card-text"><strong>Cars on the Market</strong></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="top-facts">
+			<div style="margin-bottom: 20px; padding: 20px 0 20px 0;" class="card text-center bg-dark">
+				<div class="card-body">
+					<h2 class="card-title">{{ owned_item_len }}</h2>
+					<p class="card-text"><strong>Purchased Cars</strong></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="top-facts">
+			<div style="margin-bottom: 20px; padding: 20px 0 20px 0;" class="card text-center bg-dark">
+				<div class="card-body">
+					
+					<p class="card-text"><strong>Best Customer for Today</strong></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-6">
+			<h2>Users List</h2>
+			<a class="btn btn-outline btn-info" href="{{ url_for('register_page') }}">Add new User</a>
+			<p></p>
+			<br>
+			<table class="table table-dark table-hover">
+				<thead>
+					<tr>
+						<th scope="col">ID</th>
+						<th scope="col">First Name</th>
+						<th scope="col">Last Name</th>
+						<th scope="col">Email</th>
+						<th scope="col">Options</th>
+					</tr>
+				</thead>
+
+				<body>
+					{% for user in users %}
+						<tr>
+							<td>{{ user.id }}</td>
+							<td>{{ user.first_name }}</td>
+							<td>{{ user.last_name }}</td>
+							<td>{{ user.email }}</td>
+							<td>
+								<button class="btn btn-outline btn-info">Update User</button>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-6">
+			<h2>Cars Available</h2>
+			<button class="btn btn-outline btn-info" onclick="document.getElementById('Modal-CarForm').style.display='block'">Add new Car</button>
+			<p></p>
+			<br>
+			<table class="table table-dark table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Model</th>
+						<th scope="col">Barcode</th>
+						<th scope="col">Price</th>
+						<th scope="col">Options</th>
+					</tr>
+				</thead>
+
+				<body>
+					{% for item in items %}
+					{% include 'includes/more_info.html' %}
+						<tr>
+							<td>{{ item.model }}</td>
+							<td>{{ item.barcode }}</td>
+							<td>${{ item.price }}</td>
+							<td>
+								<button class="btn btn-outline btn-info" onclick="document.getElementById('Modal-MoreInfo-{{ item.barcode }}').style.display='block'">More Info</button>
+								<button class="btn btn-outline btn-danger" onclick="document.getElementById('Modal-MoreInfo-{{ item.barcode }}').style.display='block'">Delete Car</button>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

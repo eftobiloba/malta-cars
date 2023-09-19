@@ -1,0 +1,33 @@
+<style>
+	.modal-content{
+		background-color: #272727;
+		width: 60%;
+		margin: 5% auto 15% auto;
+	}
+</style>
+
+<div class="modal-fade" id="Modal-CarForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="position: fixed; z-index: 1; right: 0; top: 0.5; overflow:auto; background-color: rgba(0,0,0,0.4); width: 100%; height: 100%; display: none;">
+	<div class="modal-content">
+		<form method="POST" class="form-register" style="color:white;">
+			<div class="modal-body">
+				<h1 class="h1 mb-3 font-weight-normal">Add new car to Market</h1>
+				<br>
+	            {{ form.hidden_tag() }}
+	            {{ form.model(class="form-control", placeholder="Model") }}
+
+	            {{ form.barcode(class="form-control", placeholder="Barcode", style="margin-top:20px") }}
+
+	            {{ form.description(class="form-control", placeholder="Description", style="margin-top:20px") }}
+
+	            {{ form.price(class="form-control", placeholder="Price", style="margin-top:20px") }}
+	            <br>
+	        </div>
+		
+			<div class="modal-footer">
+				{{ form.submit(class="btn btn-primary") }}
+				<button type="button" class="btn btn-secondary" onclick="document.getElementById('Modal-CarForm').style.display='none'">close
+				</button>
+			</div>
+		</form>
+	</div>
+</div>

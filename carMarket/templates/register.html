@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<Title>Malta Register</Title>
+{% endblock %}
+
+{% block body %}
+
+<body class="">
+    <div class="container text-center">
+        <form method="POST" class="form-register" style="color:white; margin-top:150px">
+            {{ form.hidden_tag() }}
+            <h1 class="h1 mb-3 font-weight-normal">
+                Create Malta Account
+            </h1>
+            <br>
+            {{ form.first_name(class="form-control", placeholder="First Name") }}
+
+            {{ form.last_name(class="form-control", placeholder="Last Name", style="margin-top:20px") }}
+
+            {{ form.email(class="form-control", placeholder="Email Address", style="margin-top:20px") }}
+
+            {{ form.password1(class="form-control", placeholder="Password", style="margin-top:20px") }}
+
+            {{ form.password1(class="form-control", placeholder="Confirm Password", style="margin-top:20px") }}
+        
+            <br> <br>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary") }}
+            <br>
+            <div class="checkbox mb-3">
+                <h6>Already have an Account?</h6>
+                <a href="{{ url_for('login_page') }}" class="btn btn-sm btn-secondary">Login To Your Account</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script>
+	var home = document.getElementById("register");
+	home.classList.add('active');
+</script>
+{% endblock %}

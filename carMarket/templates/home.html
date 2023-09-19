@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<Title>Malta Cars</Title>
+{% endblock %}
+
+{% block body %}
+<p style="color: white; margin-top: 70px"></p>
+<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark" style="color: white; z-index: 0; width: 100%;">
+	<div class="col-md-5 p-lg-5 mx-auto my-5">
+		<h1 class="display-4 font-weight-normal">Malta Cars Market</h1>
+		<p class="lead font-weight-normal">Start your journey to car wealth by clicking the link below</p>
+		<a class="btn btn-primary" href="{{ url_for('market_place') }}">Get Started</a>
+	</div>
+	<div class="product-device box-shadow d-none d-md-block"></div>
+	<div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+</div>
+
+<script>
+	var home = document.getElementById("home");
+	home.classList.add('active');
+</script>
+{% endblock %}

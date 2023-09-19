@@ -1,0 +1,27 @@
+<style>
+	.modal-content{
+		background-color: #212121; 
+	}
+</style>
+
+
+<div class="modal-fade" id="Modal-More-Info-{{ owned_item.barcode }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="position: fixed; z-index: 1; left: 0; top: 0; overflow:auto; background-color: rgba(0,0,0,0.4); width: 100%; height: 100%; display: none; margin-top: 50px;">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title">
+					{{owned_item.model}}
+				</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				{{ owned_item.description }}
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" onclick="document.getElementById('Modal-More-Info-{{ owned_item.barcode }}').style.display='none'">close
+				</button>
+			</div>
+		</div>
+	</div>
+</div>

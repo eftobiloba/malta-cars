@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<Title>Malta Admin</Title>
+{% endblock %}
+
+{% block body %}
+<body class="">
+    <div class="container text-center">
+        <form method="POST" class="form-register" style="color:white; margin-top:230px">
+            
+            <h1 class="h1 mb-3 font-weight-normal">
+                Login To Admin Account
+            </h1>
+            <br>
+            {{ admForm.user_name(class="form-control", placeholder="User Name") }}
+
+            {{ admForm.pass_word(class="form-control", placeholder="Password", style="margin-top:20px") }}
+        
+            <br> <br>
+            {{ admForm.submit(class="btn btn-lg btn-block btn-primary") }}
+
+            <br>
+            <div class="checkbox mb-3">
+                <h6>Forgot Password?</h6>
+                <a href="#" class="btn btn-sm btn-secondary">Contact Developer</a>
+            </div>
+        </form>
+    </div>
+</body>
+{% endblock %}
